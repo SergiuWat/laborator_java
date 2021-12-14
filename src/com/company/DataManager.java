@@ -1,7 +1,7 @@
 package com.company;
 import java.util.*;
 
-public class DataManager {
+public class DataManager implements IDataLoader {
     public ManagerCursuri manager = new ManagerCursuri();
     // Obiectul rand genereaza numere aleatorii. Folosit in programul de testare
     public Random rand = new Random();
@@ -13,6 +13,8 @@ public class DataManager {
         this.createCoursesData();
     }
 
+
+    @Override
     public Student[] createStudentsData() {
         String nume[] = { "Jarcau", "Oprea", "Solomon", "Patrascu", "Damian", "Cristea", "Visoiu", "Andrei", "Petreanu", "Dragomir", "Gavrila",	"Suciu", "Rotaru", "Grigorescu", "Dudulescu", "Stanculescu"
                 , "Vajaiac", "Istudor",	"Bruma", "Neagu", "Popa", "Gribincea", "Cucu", "Milea",	"Coca",	"Iorga", "Budau", "Maracineanu", "Pascociu", "Ionita",	"Paltanea"
@@ -27,10 +29,11 @@ public class DataManager {
             studenti[i] = s;
         }
 
-
         return studenti;
     }
 
+
+    @Override
     public Profesor[] createProfesorData() {
         String nume[] = { "URSUTIU", "PANA", "ALEXANDRU","CRETU ", "KRISTALY", "DANILA", "DEMETER",	"DIACONU", "ILEA", "POP", "BOER" };
         String prenume[] = {"DORU","GHEORGHE", "MARIAN","NICOLAE CONSTANTIN", "DOMINIC", "ADRIAN", "ROBERT", "LAURENTIU", "GELU","MIHAIL", "ATTILA"};
@@ -53,16 +56,20 @@ public class DataManager {
         return setOfStudents;
     }
 
-    public void createCoursesData() {
+
+    @Override
+    public Curs[] createCoursesData() {
         String curs[] = { "Teoria sistemelor", "Masurari electronice", "Dispozitive electronice", "Structuri de date", "Procesarea semnalelor", "Limba engleza", "Limbaje formale", "PCLP 1", "PCLP 2" };
         String descriere = "descriere curs";
         Arrays.sort(curs);
+        ArrayList<Curs> cursuri = new ArrayList<>();
         for (String numeCurs : curs) {
             Set<Student> studentsData = createRandomSetOfStudents();
             Profesor profesor = dataSetOfProfesor[rand.nextInt(dataSetOfProfesor.length)];
             Curs c = new Curs(numeCurs, descriere, profesor, studentsData);
-            manager.AddCurs(c);
+            cursuri.add(c);
         }
+        return cursuri.toArray(new Curs[cursuri.size()]);
     }
 
     public void gradeStudents() {
