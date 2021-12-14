@@ -1,5 +1,5 @@
-STUDENTI_PATH="studenti.csv"
-TEACHERS_PATH="profesori.csv"
+STUDENTI_PATH="studenti.txt"
+TEACHERS_PATH="profesori.txt"
 COURSES_PATH="cursuri.csv"
 LOAD_TYPE="HARDCODAT"
 DISPLAY_TYPE="CONSOLE"

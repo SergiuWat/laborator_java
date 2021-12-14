@@ -1,5 +1,8 @@
 package com.company;
-
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 enum LOAD_TYPE{
     HARDCODAT,KEYBOARD,FILE
 }
@@ -11,34 +14,15 @@ enum DISPLAY_TYPE{
 public class Main {
 
     public static void main(String[] args) {
-        DataManager dataManager = new DataManager();
+        IDisplayManager displayManager = Settings.displayHashMap.get(Settings.displayType);
+        IDataLoader dataManager = Settings.dataLoaderHashMap.get(Settings.loadType);
+        displayManager.displayStudents(dataManager.createStudentsData());
 
-        dataManager.gradeStudents();
-        dataManager.manager.reportAllCourses();
-        dataManager.manager.reportAllStudentsGrades();
-        dataManager.manager.reportAllCourses();
-        try {
-            dataManager.manager.RemoveCurs(new Curs("PLCP 1"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        FileDataManager fileDataManager=new FileDataManager();
+        for(int i=0;i<fileDataManager.createStudentsData().length;i++){
+            System.out.println(fileDataManager.createStudentsData()[i]);
         }
-
-        System.out.println("Dupa stergere:");
-        dataManager.manager.reportAllCourses();
-
-        dataManager.manager.reportAllStudentsGrades();
-
-        try {
-            dataManager.manager.EditCurs(new Curs("Limba engleza"), new Curs("Limba engleza II", "descriere", new Profesor("Ana", "Maria"), dataManager.createRandomSetOfStudents()));
-            dataManager.manager.reportAllCourses();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        dataManager.GrupeStudenti();
-        System.out.println();
-        dataManager.AfiseazaCursuriSortate();
-        dataManager.SortByNumberStudents();
-        dataManager.SortByProfName();
 
     }
+
 }
