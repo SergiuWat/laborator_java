@@ -1,12 +1,10 @@
 package com.company;
 
+import com.opencsv.CSVReader;
 import java.beans.ExceptionListener;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -55,16 +53,18 @@ public class Application {
     }
 
     private void initUsers() {
-        try (FileInputStream fis = new FileInputStream("users.xml")) {
-            XMLDecoder decoder = new XMLDecoder(fis);
-            this.userList = (ArrayList<User>)decoder.readObject();
-            decoder.close();
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        String line=new String();
+        int i=0;
+        try(BufferedReader br=new BufferedReader(new FileReader("users.txt"))){
+            while((line=br.readLine())!=null){
+                String[] row=line.split(",");
+                User us=new User(row[0],row[1]);
+                userList.add(us);
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     public void login(User user) throws Exception {

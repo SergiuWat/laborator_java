@@ -2,27 +2,27 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.desktop.AppForegroundListener;
 import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class LoginForm extends JFrame {
+public class RegisterForm extends JFrame {
     private JPanel mainPanel;
-    private JLabel logoLabel;
-    private JPanel topPanel_login;
-    private JPanel bottomPanel_login;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JButton logInButton;
     private JButton registerButton;
+    private JLabel logoIcon;
+    private JRadioButton profesorRadioButton;
+    private JRadioButton studentRadioButton;
 
-    public LoginForm(String Title){
-        super(Title);
+    RegisterForm (String title){
+        super(title);
         this.setContentPane(mainPanel);
         this.setPreferredSize(new Dimension(500,500));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.pack();
-        //USERNAME FIELD
+
         usernameField.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -35,8 +35,6 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-
-        //PASSWORD FIELD
         passwordField.setEchoChar((char)0);
 
         passwordField.addMouseListener(new MouseAdapter() {
@@ -51,26 +49,19 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-
-        //LOG IN BUTTON
-        logInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-
-                    Application.getInstance().login(new User(usernameField.getText(),new String(passwordField.getPassword())));
-                    JOptionPane.showMessageDialog(null,"Login successfully");
-                    //LoginForm.super.setContentPane(new TecherForm());
-
-                }catch (Exception ex){
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
-                }
-            }
-        });
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame Register=new RegisterForm("Register");
+                JFrame login=new LoginForm("Login");
+
+                if(profesorRadioButton.isSelected()){
+
+                }else if(studentRadioButton.isSelected()){
+
+                }else{
+                    JOptionPane.showMessageDialog(null,"Te rog sa selectezi daca esti profesor sau student");
+
+                }
                 dispose();
 
             }
@@ -78,8 +69,8 @@ public class LoginForm extends JFrame {
     }
 
     private void createUIComponents() {
-        logoLabel=new JLabel();
+        logoIcon =new JLabel();
         ImageIcon logoIcon=new ImageIcon(new ImageIcon("C:\\Users\\rome_\\OneDrive\\Desktop\\logo2.png").getImage().getScaledInstance(300,150, Image.SCALE_SMOOTH));
-        logoLabel.setIcon(logoIcon);
+        this.logoIcon.setIcon(logoIcon);
     }
 }
