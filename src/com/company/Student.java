@@ -11,7 +11,14 @@ class Student implements Comparable<Student>  {
         this.prenume = prenume;
         this.grupa = grupa;
     }
-
+    public String getNume(){
+        return nume;
+    }
+    Student() {
+        this.nume = "";
+        this.prenume = "";
+        this.grupa = 0;
+    }
 
     @Override
     public String toString() {

@@ -22,7 +22,8 @@ public class FileDataManager implements IDataLoader {
         try(BufferedReader br=new BufferedReader(new FileReader("studenti.csv"))){
             while((line=br.readLine())!=null){
                 String[] row=line.split(",");
-                Student st=new Student(row[0],row[1],Integer.parseInt(row[2]));
+                String result = row[2].replaceAll("\"","");
+                Student st=new Student(row[0],row[1],Integer.parseInt(result));
                 students.add(st);
 
             }

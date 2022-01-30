@@ -14,6 +14,8 @@ public class LoginForm extends JFrame {
     private JPasswordField passwordField;
     private JButton logInButton;
     private JButton registerButton;
+    private JRadioButton profesorButton;
+    private JRadioButton studentButton;
 
     public LoginForm(String Title){
         super(Title);
@@ -56,17 +58,34 @@ public class LoginForm extends JFrame {
         logInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                if(studentButton.isSelected()){
+                    try{
 
-                    Application.getInstance().login(new User(usernameField.getText(),new String(passwordField.getPassword())));
-                    JOptionPane.showMessageDialog(null,"Login successfully");
-                    //LoginForm.super.setContentPane(new TecherForm());
-                    JFrame Student=new StudentForm("Register",usernameField.getText(),new String(passwordField.getPassword()));
-                    dispose();
+                        Application.getInstance().login(new User(usernameField.getText(),new String(passwordField.getPassword())));
+                        JOptionPane.showMessageDialog(null,"Login successfully");
+                        //LoginForm.super.setContentPane(new TecherForm());
+                        JFrame Student=new StudentForm("Student",usernameField.getText(),new String(passwordField.getPassword()));
+                        dispose();
 
-                }catch (Exception ex){
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }else if(profesorButton.isSelected()){
+                    try{
+
+                        Application.getInstance().login(new User(usernameField.getText(),new String(passwordField.getPassword())));
+                        JOptionPane.showMessageDialog(null,"Login successfully");
+                        //LoginForm.super.setContentPane(new TecherForm());
+                        JFrame teacher=new TeacherForm("Teacher",usernameField.getText(),new String(passwordField.getPassword()));
+                        dispose();
+
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }else{
+
                 }
+
             }
         });
         registerButton.addActionListener(new ActionListener() {

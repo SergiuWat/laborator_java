@@ -22,7 +22,7 @@ public class RegisterForm extends JFrame {
     RegisterForm (String title){
         super(title);
         this.setContentPane(mainPanel);
-        this.setPreferredSize(new Dimension(700,700));
+        this.setPreferredSize(new Dimension(500,500));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.pack();
@@ -63,7 +63,6 @@ public class RegisterForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 if(profesorRadioButton.isSelected()){
                     try{
                         Application.getInstance().Register(new User(usernameField.getText(),new String(passwordField.getPassword())));
@@ -87,7 +86,9 @@ public class RegisterForm extends JFrame {
                         Application.getInstance().Register(new User(usernameField.getText(),new String(passwordField.getPassword())));
                         FileWriter outputfile=new FileWriter("studenti.csv",true);
                         CSVWriter write=new CSVWriter(outputfile);
-                        String[] data={usernameField.getText(),new String(passwordField.getPassword())};
+                        Integer grup=Integer.parseInt(grupaField.getText());
+                        String[] data={usernameField.getText(),new String(passwordField.getPassword()),grup.toString()};
+
 
                         write.writeNext(data);
                         write.close();

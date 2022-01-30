@@ -105,6 +105,26 @@
               <text value="Register"/>
             </properties>
           </component>
+          <component id="630b9" class="javax.swing.JRadioButton" binding="profesorButton">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13092807"/>
+              <foreground color="-267"/>
+              <text value="Profesor"/>
+            </properties>
+          </component>
+          <component id="d79bc" class="javax.swing.JRadioButton" binding="studentButton">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13092807"/>
+              <foreground color="-267"/>
+              <text value="Student"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="bc61f" class="javax.swing.JLabel">
@@ -125,4 +145,10 @@
       </component>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="buttonGroup1">
+      <member id="630b9"/>
+      <member id="d79bc"/>
+    </group>
+  </buttonGroups>
 </form>
