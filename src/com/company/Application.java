@@ -72,7 +72,7 @@ public class Application {
     private void initUsers() {
         String line=new String();
         int i=0;
-        try(BufferedReader br=new BufferedReader(new FileReader("users.txt"))){
+        try(BufferedReader br=new BufferedReader(new FileReader("users.csv"))){
             while((line=br.readLine())!=null){
                 String[] row=line.split(",");
                 User us=new User(row[0],row[1]);
