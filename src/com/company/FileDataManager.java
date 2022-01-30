@@ -12,13 +12,14 @@ public class FileDataManager implements IDataLoader {
     public int minimumRequiredStudents = 5;
     public Student[] dataSetOfStudent = createStudentsData();
     public Profesor[] dataSetOfProfesor = createProfesorData();
+    public Curs[] dataSetOfCurs=createCoursesData();
 
     @Override
     public Student[] createStudentsData() {
         String line=new String();
         int i=0;
         Set<Student> students=new HashSet<Student>();
-        try(BufferedReader br=new BufferedReader(new FileReader(Settings.STUDENTS_PATH))){
+        try(BufferedReader br=new BufferedReader(new FileReader("studenti.csv"))){
             while((line=br.readLine())!=null){
                 String[] row=line.split(",");
                 Student st=new Student(row[0],row[1],Integer.parseInt(row[2]));
@@ -42,7 +43,7 @@ public class FileDataManager implements IDataLoader {
         String line=new String();
         int i=0;
         Set<Profesor> profesors=new HashSet<Profesor>();
-        try(BufferedReader br=new BufferedReader(new FileReader(Settings.TEACHERS_PATH))){
+        try(BufferedReader br=new BufferedReader(new FileReader("profesor.csv"))){
             while((line=br.readLine())!=null){
                 String[] row=line.split(",");
                 Profesor st=new Profesor(row[0],row[1]);
@@ -65,6 +66,30 @@ public class FileDataManager implements IDataLoader {
     @Override
     public Curs[] createCoursesData() {
 
-        return new Curs[0];
+        String line=new String();
+        int i=0;
+        List<Curs> curss=new ArrayList<>();
+        try(BufferedReader br=new BufferedReader(new FileReader("cursuri.csv"))){
+            while((line=br.readLine())!=null){
+                String[] row=line.split(",");
+                Profesor prof=new Profesor(row[2],row[3]);
+                Set<Student> students=new HashSet<>();
+                for(int j=4;j< row.length;j+=3){
+                    Student st=new Student(row[j],row[j+1],Integer.parseInt(row[j+2]));
+                    students.add(st);
+                }
+                Curs st=new Curs(row[0],row[1],prof,students);
+                curss.add(st);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Curs[] cursuri=new Curs[curss.size()];
+        for(Curs student:curss){
+            cursuri[i]=student;
+            i++;
+        }
+        return cursuri;
     }
 }

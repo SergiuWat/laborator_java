@@ -61,6 +61,8 @@ public class LoginForm extends JFrame {
                     Application.getInstance().login(new User(usernameField.getText(),new String(passwordField.getPassword())));
                     JOptionPane.showMessageDialog(null,"Login successfully");
                     //LoginForm.super.setContentPane(new TecherForm());
+                    JFrame Student=new StudentForm("Register",usernameField.getText(),new String(passwordField.getPassword()));
+                    dispose();
 
                 }catch (Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -80,6 +82,8 @@ public class LoginForm extends JFrame {
     private void createUIComponents() {
         logoLabel=new JLabel();
         ImageIcon logoIcon=new ImageIcon(new ImageIcon("C:\\Users\\rome_\\OneDrive\\Desktop\\logo2.png").getImage().getScaledInstance(300,150, Image.SCALE_SMOOTH));
+
         logoLabel.setIcon(logoIcon);
+
     }
 }

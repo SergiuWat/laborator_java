@@ -1,0 +1,6 @@
+Nume,Prenume,materie,nota
+Sergiu,Andrei,DE,4
+Sergiu,Andrei,ME,5
+Sergiu,Andrei,PJ,6
+Sergiu,Andrei,SS,8
+Sergiu,Andrei,TS,4

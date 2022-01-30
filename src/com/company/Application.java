@@ -6,12 +6,14 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Application {
     private static Application single_instance = null;
     private List<User> userList = new ArrayList<>();
+    private List<Curs> cursList=new ArrayList<>();
 
     public User currentUser = null;
 
@@ -50,7 +52,22 @@ public class Application {
             e.printStackTrace();
         } */
         this.initUsers();
+        this.initCursuri();
     }
+
+    private void initCursuri(){
+        FileDataManager fdm=new FileDataManager();
+        cursList= Arrays.asList(fdm.dataSetOfCurs);
+    }
+   public void Register(User user) throws  Exception{
+
+       int index = userList.indexOf(user);
+       if ( index != -1 ) {
+           Application.getInstance().currentUser = userList.get(index);
+       } else {
+           throw new Exception("Utilizatorul nu exista in sistem!");
+       }
+   }
 
     private void initUsers() {
         String line=new String();

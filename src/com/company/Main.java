@@ -30,16 +30,21 @@ public class Main {
 
          */
 
+        FileDataManager fileDataManager=new FileDataManager();
+        for(int i=0;i<fileDataManager.dataSetOfStudent.length;i++){
+            System.out.println(fileDataManager.createStudentsData()[i]);
+        }
+        for(int i=0;i<fileDataManager.dataSetOfCurs.length;i++){
+            System.out.println(fileDataManager.dataSetOfCurs[i]);
+        }
         JFrame frame=new LoginForm("Login");
 
        // IDisplayManager displayManager = Settings.displayHashMap.get(Settings.displayType);
       //  IDataLoader dataManager = Settings.dataLoaderHashMap.get(Settings.loadType);
        // displayManager.displayStudents(dataManager.createStudentsData());
 
-        FileDataManager fileDataManager=new FileDataManager();
-        for(int i=0;i<fileDataManager.createStudentsData().length;i++){
-            System.out.println(fileDataManager.createStudentsData()[i]);
-        }
+
+
 
 
     }
